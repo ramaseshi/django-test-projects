@@ -3,7 +3,7 @@ This is simple testsite project
 
 What it does :
 
-it contains simple text field to enter any text, it displays back on screen
+it contains simple text field to enter any text, it displays back all tweets 
 
 URLs to access : domain/tweet --> Displays all tweets 
 
