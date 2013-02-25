@@ -2,20 +2,33 @@
 from myapp.models import Myapp
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
+from django.shortcuts import render
+
+from form import SumbitForm 
+
 
 def index(request):
     all_list = Myapp.objects.all()
     output = ','.join([p.text for p in all_list])
     return HttpResponse(output)
 
-def text_form(request):
-    return render_to_response('text_form.html')
+#def text_form(request):
+#    return render_to_response('text_form.html')
 
 
-def form(request):
-    if 'q' in request.GET:
-        message = request.GET['q']
-	Myapp(text=message).save()
+# def tweets(request):
+def textform(request):
+    tweets = Myapp.objects.all()
+    if request.method == 'POST':
+    	form = SumbitForm(request.POST)
+	if form.is_valid():
+           message = form.cleaned_data['text'] 
+	   Myapp(text=message).save()
+
     else:
-        message = 'You submitted an empty form.'
-    return HttpResponse(message)
+	form = SumbitForm()
+
+    return render(request, 'text_form.html', {
+        'form': form,
+	'tweets': tweets,
+    })
