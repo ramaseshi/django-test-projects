@@ -1,0 +1,12 @@
+
+This is simple testsite project
+
+What it does :
+
+it contains simple text field to enter any text and saves to db
+
+URLs to access : domain/page1 --> enter the text data
+		 domain/page2 --> Display entered text from DB
+
+
+
